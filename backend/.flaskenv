@@ -1,3 +1,5 @@
 FLASK_APP=base.py
 FLASK_ENV=development
 GEMINI_API_KEY=AIzaSyCklcmPtU0wUCwTGsKuh14eka-EgzWNoHo
+
+JWT_SECRET_KEY=secretkey
