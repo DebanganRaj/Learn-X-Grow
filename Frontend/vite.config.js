@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://learn-x-grow-3.onrender.com',
+        target: 'http://127.0.0.1:5000',
         changeOrigin: true,
       },
     },
