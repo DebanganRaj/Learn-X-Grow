@@ -3,15 +3,25 @@ from flask_cors import CORS
 from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager, create_access_token
 
+import roadmap
+import quiz
+import generativeResources
+
+# Flask app
 app = Flask(__name__)
 app.config["JWT_SECRET_KEY"] = "your_secret_key"
 
-CORS(app)
+# Extensions
+CORS(app)  # allow all origins in production, or restrict later
 bcrypt = Bcrypt(app)
 jwt = JWTManager(app)
 
+# In-memory user store (⚠️ will reset on each Vercel cold start!)
 users = {}
 
+# -----------------------
+# AUTH ROUTES
+# -----------------------
 @app.route("/register", methods=["POST"])
 def register():
     data = request.get_json()
@@ -27,6 +37,7 @@ def register():
     users[username] = hashed_pw
     return jsonify({"msg": "User registered successfully"}), 200
 
+
 @app.route("/login", methods=["POST"])
 def login():
     data = request.get_json()
@@ -40,6 +51,53 @@ def login():
     token = create_access_token(identity=username)
     return jsonify({"token": token}), 200
 
-# Vercel handler
+
+# -----------------------
+# ROADMAP ROUTES
+# -----------------------
+@app.route("/api/roadmap", methods=["POST"])
+def get_roadmap():
+    req = request.get_json()
+    response_body = roadmap.create_roadmap(
+        topic=req.get("topic", "Machine Learning"),
+        time=req.get("time", "4 Weeks"),
+        knowledge_level=req.get("knowledge_level", "Absolute Beginner"),
+    )
+    return jsonify(response_body)
+
+
+@app.route("/api/quiz", methods=["POST"])
+def get_quiz():
+    req = request.get_json()
+    course = req.get("course")
+    topic = req.get("topic")
+    subtopic = req.get("subtopic")
+    description = req.get("description")
+
+    if not (course and topic and subtopic and description):
+        return jsonify({"error": "Required Fields not provided"}), 400
+
+    response_body = quiz.get_quiz(course, topic, subtopic, description)
+    return jsonify(response_body)
+
+
+@app.route("/api/generate-resource", methods=["POST"])
+def generative_resource():
+    req = request.get_json()
+    required_keys = ["course", "knowledge_level", "description", "time"]
+
+    for key in required_keys:
+        if key not in req or not req[key]:
+            return jsonify({"error": f"{key} not provided"}), 400
+
+    data = {k: req[k] for k in required_keys}
+    resources = generativeResources.generate_resources(**data)
+
+    return jsonify(resources)
+
+
+# -----------------------
+# Vercel Handler
+# -----------------------
 def handler(request, *args, **kwargs):
     return app(request, *args, **kwargs)
