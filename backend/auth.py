@@ -84,7 +84,7 @@ CORS(
     origins=[
         "http://localhost:5173",       # React dev server
         "http://127.0.0.1:5173",
-        "https://learn-x-grow-r3rv.vercel.app"  # deployed React site
+        "https://learn-x-grow-r3rv.vercel.app/"  # deployed React site
     ],
     supports_credentials=True
 )
