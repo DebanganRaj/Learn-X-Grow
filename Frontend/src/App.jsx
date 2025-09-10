@@ -22,7 +22,7 @@
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Header from "./components/header/Header.jsx";
+import Header from "./components/header/header.jsx";
 import Login from "./components/Login.jsx";
 import Register from "./components/Register.jsx";
 
