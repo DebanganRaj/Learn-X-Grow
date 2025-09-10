@@ -1,15 +1,15 @@
-header {
+/* header {
   position: relative;
   margin-bottom: 3rem;
-}
-header .ProfileAvatar {
+} */
+/* header .ProfileAvatar {
   display: none;
   position: absolute;
   right: 5ch;
   top: 10px;
-}
+} */
 
-header .Home {
+/* header .Home {
   position: absolute;
   right: 5ch;
   top: 20px;
@@ -18,14 +18,62 @@ header h1 {
   font-size: 1.5rem;
   font-weight: 100;
   margin-left: 2rem;
-}
-header h1 .x {
+} */
+/* header h1 .x {
   font-weight: 100;
   /* font-style: italic; */
-  font-size: 1.8rem;
+  /* font-size: 1.8rem;
   font-family: "Times New Roman", Times, serif;
 }
 .logo {
   margin-left: 2rem;
   margin-top: 0.7rem;
+}  */
+
+header {
+  position: relative;
+  height: 64px;
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #000;
+  padding: 12px 25px;
+  border-radius: 0 0 15px 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+header .ProfileAvatar {
+  display: none;
+}
+
+header .Home {
+  margin-left: auto;
+  margin-right: 20px;
+}
+
+header .LoginBtn {
+  background: #2575fc;
+  color: #fff;
+  margin: 0 10px;
+  padding: 10px 22px;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+header .LoginBtn:hover {
+  background: transparent;
+  color: #2575fc;
+  border: 2px solid #2575fc;
+  box-shadow: 0 0 12px rgba(37,117,252,0.6);
+}
+
+.logo {
+  margin-left: 1rem;
+  margin-top: 0.4rem;
+  height: 45px;
 }

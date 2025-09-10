@@ -4,7 +4,8 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import { TopicPage, RoadmapPage, QuizPage, ProfilePage } from "./pages/index";
 import App from "./App";
-// import reportWebVitals from "./reportWebVitals";
+import Login from "./components/Login.jsx";
+import Register from "./components/Register.jsx";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,14 @@ const router = createBrowserRouter([
     path: "/topic/",
     element: <TopicPage />,
   },
+  {
+    path: "/login/",
+    element: <Login />,
+  },
+  {
+    path: "/register/",
+    element: <Register />,
+  }
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

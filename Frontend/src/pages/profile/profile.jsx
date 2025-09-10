@@ -111,7 +111,7 @@ const ProfilePage = (props) => {
         <div className="flexbox info">
           <img src="/avatar.jpg" alt="Avatar" className="avatar" />
           <div className="flexbox text">
-            <h1>Hemant Kumar</h1>
+            <h1>Debangan Raj</h1>
             <h3>
               Ongoing Courses: <b>{Object.keys(topics).length}</b>
             </h3>
